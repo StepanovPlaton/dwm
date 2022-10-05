@@ -4,6 +4,8 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;   	/* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -46,10 +48,42 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
- 	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx*/
- 	{ "TelegramDesktop",         NULL,       NULL,         NULL,         1,           -1,        1400,  50, 425, 600,        -1 },
- 	{ "transmission",            NULL,       NULL,         NULL,         1,           -1,        1050, 680, 800, 350,        -1 },//not working =(
- 	/* { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1,        50,50,500,500,        5 }, */
+ 	{ 
+		"st-256color",				// class
+		NULL,						// instance
+		NULL,						// title
+		NULL,						// tags mask
+		0,							// isfloating
+		1,							// isterminal
+		0,							// noswallow
+		-1,							// monitor
+		0,0,0,0,					// float x,y,w,h
+		-1							// floatborderpx
+	},
+ 	{ 
+		"TelegramDesktop",			// class
+		NULL,						// instance
+		NULL,						// title
+		NULL,						// tags mask
+		1,							// isfloating
+		0,							// isterminal
+		0,							// noswallow
+		-1,							// monitor
+		1400,  50, 425, 600,        // float x,y,w,h 
+		-1							// floatborderpx
+	},
+ 	{ 
+		"transmission",				// class
+		NULL,						// instance
+		NULL,						// title
+		NULL,						// tags mask
+		1,							// isfloating
+		0,							// isterminal
+		0,							// noswallow
+		-1,							// monitor
+		1050, 680, 800, 350,        // float x,y,w,h 
+		-1							// floatborderpx
+	},
 };
 
 /* layout(s) */
